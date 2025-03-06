@@ -65,12 +65,6 @@ def scrap_finviz_news(ticker, nb_news=5):
     data['Date'] = pd.to_datetime(data['Date'], format="%b-%d-%y %I:%M%p").dt.date
     return data
 
-# Function to get sentiment using BERT
-def get_sentiment_bert(text):
-    result = sentiment_analysis(text)
-    dico = {"positive":1, "neutral":0, "negative":-1}
-    return dico[result[0]['label']], result[0]['score']
-
 
 def dashboard_sentiment_analysis():
     nb_news = 1000
@@ -81,6 +75,12 @@ def dashboard_sentiment_analysis():
     # Load sentiment analysis pipeline
     # model from https://huggingface.co/ProsusAI/finbert
     sentiment_analysis = pipeline("sentiment-analysis", model="ProsusAI/finbert")
+    
+    # Function to get sentiment using BERT
+    def get_sentiment_bert(text):
+        result = sentiment_analysis(text)
+        dico = {"positive":1, "neutral":0, "negative":-1}
+        return dico[result[0]['label']], result[0]['score']
     
     # Apply sentiment analysis
     df_news['sentiment_score'], df_news['sentiment_confidence'] = zip(*df_news['Title'].apply(get_sentiment_bert))

@@ -4,12 +4,13 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense
 from sklearn.decomposition import PCA
+from Data.data import create_df
 
 # Load data
 def load_data():
     #return create_df()
     # To avoid to many API calls, we will load the data from a CSV file
-    df = pd.read_csv("data.csv", index_col=0)
+    df = pd.read_csv("Data/data.csv", index_col=0)
     df.index = pd.to_datetime(df.index)
     return df
 

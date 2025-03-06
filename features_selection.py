@@ -1,12 +1,12 @@
 import pandas as pd
 from sklearn.linear_model import ElasticNet
 from sklearn.preprocessing import StandardScaler
-from data import create_df
+from Data.data import create_df
 
 def load_data():
     #return create_df()
     # To avoid to many API calls, we will load the data from a CSV file
-    df = pd.read_csv("data.csv", index_col=0)
+    df = pd.read_csv("Data/data.csv", index_col=0)
     df.index = pd.to_datetime(df.index)
     return df
 
