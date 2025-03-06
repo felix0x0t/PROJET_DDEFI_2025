@@ -27,7 +27,7 @@ heatmap_fig = px.imshow(corr_matrix.round(2),
 
 # Create charts for sentiment analysis
 pie_chart = px.pie(values=sentiment_counts, names=sentiment_counts.index, title='Distribution des sentiments')
-scatter_chart = px.scatter(sentiment_scores, x='Date', y='sentiment_score', title='Evolution du sentiment')
+scatter_chart = px.line(sentiment_scores, x='Date', y='sentiment_score', title='Evolution du sentiment')
 wordcloud_chart = px.imshow(wordcloud, title='Wordcloud des articles')
 
 # Prepare data for volatility prediction visualization
@@ -43,7 +43,7 @@ volatility_fig.update_layout(title='Prédiction de la volatilité', xaxis_title=
 
 # Define layout with tabs
 app.layout = html.Div([
-    html.H1("Dashboard Multi-Pages"),
+    html.H1("Dashboard volatilité"),
     dcc.Tabs(id="tabs", value='features-selection', children=[
         dcc.Tab(label='Analyse des variables', value='features-selection', children=[
             html.H2("Variables sélectionnées:"),

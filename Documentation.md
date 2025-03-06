@@ -89,9 +89,11 @@ Un modèle bayésien utilise le théorème de Bayes pour trouver la distribution
 Nous avons souhaité utilisé un modèle bayésien dans le but de quantifier l’incertitude de nos prédictions, ce qui est réalisé sous forme de distributions des posteriors.
 
 Le modèle bayésien semble mieux capturer les tendances de la volatilité :
+
 ![bayesian.png](Images/bayesian.png)
 
 Néanmoins, en affichant l'intervalle d'incertitude à 95%, on se rend compte que les prédictions ne sont pas réellement fiables:
+
 ![bayesian_incertitude.png](Images/bayesian_incertitude.png)
 
 ## Deep learning
@@ -99,6 +101,7 @@ Néanmoins, en affichant l'intervalle d'incertitude à 95%, on se rend compte qu
 Nous avons ensuite cherché des modèles plus robustes qui seraient capables de capturer les relations complexes entre les variables explicatives et la volatilité. Nous avons utilisé des LSTM (Long Short-Term Memory), qui sont une variante des réseaux de neurones récurrents. Ils permettent de capturer les dépendances à long terme, capturer des patterns complexes et offrent des prédictions robustes.
 
 Nous observons que les LSTM parviennent à capturer correctement l'information présente dans les données et avec une incertitude limitée.
+
 ![lstm.png](Images/lstm.png)
 
 ## Perspective d'amélioration
@@ -109,3 +112,28 @@ Nous avons choisi d'utiliser les sites Google News et FinViz pour scrapper les t
 Nous avons ensuite cherché un modèle de language capable de réaliser l'analyse de sentiments. Après quelques tests infructueux sur des modèles trop généraux, nous avons décidé d'utiliser [finbert](https://huggingface.co/ProsusAI/finbert), qui est un fine-tuning de BERT sur un corpus financier ayant fait l’objet d’un papier de recherche, pour classifier chaque article en positif, neutre ou négatif. 
 
 En affectant un score à chacune de ces classes, il est possible de créer un score quotidien, servant ensuite de nouvelle variable dans nos modèles de prédiction.
+
+# Dashboard
+Afin de répondre à notre problématique business, nous avons construit un dashboard.
+
+La première page permet d'identifier les variables originales (ie avant l'analyse en cpmposantes principales) les plus importantes (sélection réalisée avec `ElasticNet`) ainsi que la matrice de corrélation correspondante:
+
+![dashboard_1.png](Images/dashboard_1.png)
+
+La seconde page permet d'analyser le sentiment du marché vis-à-vis du S&P 500 et donc d'obtenir des informations sur sa volatilité:
+
+![dashboard_2_1.png](Images/dashboard_2_1.png)
+![dashboard_2_2.png](Images/dashboard_2_2.png)
+
+La troisième page permet d'observer notre prédiction de la volatilité sur les 20 prochains jours:
+
+![dashboard_3.png](Images/dashboard_3.png)
+
+# Industrialisation
+## Docker
+Suite à un problème technique, il nous a été impossible de créer l'image Docker mais le Dockerfile est prêt et il suffit de lancer la commande indiquée dans le README sur un PC disposant de Docker (ce n'est pas le cas des ordinateurs de l'école...) pour créer et lancer l'image.
+
+## Déploiement cloud
+Nous avons déployé notre dashboard sur la version gratuite de Render mais celle-ci étant limitée à 512MB, il n'a pas été possible de visualiser le dashboard dessus bien que tout le reste semble fonctionner correctement:
+
+![cloud.png](Images/cloud.png)
