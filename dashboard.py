@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 import pandas as pd
 from sklearn.linear_model import ElasticNet
 from sklearn.preprocessing import StandardScaler
+import os
 from features_selection import dashboard_features_selection
 from sentiment_analysis import dashboard_sentiment_analysis
 from prediction import dashboard_prediction
@@ -62,4 +63,6 @@ app.layout = html.Div([
 
 # Run app
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    #app.run_server(debug=True)
+    # for deployment
+    app.run_server(host="0.0.0.0", port=int(os.environ.get("PORT", 8050)))
