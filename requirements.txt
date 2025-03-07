@@ -14,6 +14,7 @@ dash==2.18.2
 dash-core-components==2.0.0
 dash-html-components==2.0.0
 dash-table==5.0.0
+DateTime==5.5
 decorator==5.2.1
 dm-tree==0.1.9
 filelock==3.17.0
@@ -44,7 +45,7 @@ mdurl==0.1.2
 ml-dtypes==0.4.1
 multitasking==0.0.11
 namex==0.0.8
-narwhals==1.29.0
+narwhals==1.29.1
 nest-asyncio==1.6.0
 numpy==2.0.2
 nvidia-nccl-cu12==2.25.1
@@ -94,3 +95,4 @@ wrapt==1.17.2
 xgboost==2.1.4
 yfinance==0.2.54
 zipp==3.21.0
+zope.interface==7.2

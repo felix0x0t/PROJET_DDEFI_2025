@@ -2,9 +2,6 @@ import dash
 from dash import dcc, html
 import plotly.express as px
 import plotly.graph_objects as go
-import pandas as pd
-from sklearn.linear_model import ElasticNet
-from sklearn.preprocessing import StandardScaler
 import os
 from features_selection import dashboard_features_selection
 from sentiment_analysis import dashboard_sentiment_analysis
